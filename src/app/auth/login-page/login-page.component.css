@@ -1,0 +1,88 @@
+/* Основной фон и центрирование формы */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.login-container {
+  background-color: #213a70;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  margin-bottom: 30px;
+}
+
+/* Форма и поля */
+form {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  gap: 15px;
+}
+
+input {
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Контейнер для чекбокса */
+.remember-me-wrapper {
+  width: 100%; /* совпадает с шириной полей */
+  display: flex;
+}
+
+/* Чекбокс с текстом */
+.remember-me {
+  display: flex;
+  align-items: center; /* по вертикали с галочкой */
+  gap: 8px;
+  font-size: 14px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Галочка */
+.remember-me input[type="checkbox"] {
+  margin: 0;
+}
+
+/* Текст сразу после галочки, не переносится */
+.remember-me span {
+  white-space: nowrap;
+}
+
+/* Кнопка Войти */
+button {
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: white;
+  color: #213a70;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+  background-color: #1f2d5c;
+  color: white;
+}
+
+/* Сообщение об ошибке */
+.error-message {
+  color: #ff4d4f;
+  text-align: center;
+  font-size: 14px;
+}

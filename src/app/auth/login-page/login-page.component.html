@@ -1,0 +1,20 @@
+<div class="login-container">
+  <h2>Авторизация</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <input formControlName="login" placeholder="Логин" />
+    <input formControlName="password" type="password" placeholder="Пароль" />
+
+    <!-- Чекбокс между паролем и кнопкой Войти -->
+    <div class="remember-me-wrapper">
+      <label class="remember-me">
+        <input type="checkbox" formControlName="remember" />
+        <span>Remember me</span>
+      </label>
+    </div>
+
+    <button type="submit">Войти</button>
+
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  </form>
+</div>

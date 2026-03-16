@@ -1,0 +1,14 @@
+<div class="min-h-screen bg-[#213a70] flex flex-col items-center justify-center text-white">
+
+  <h2 class="text-2xl mb-8 text-center">
+    Добро пожаловать, {{ userLogin }}
+  </h2>
+
+  <button
+    (click)="confirmLogout()"
+    class="px-6 py-3 rounded-md bg-white text-[#213a70] hover:bg-[#1f2d5c] hover:text-white transition"
+  >
+    Выйти
+  </button>
+
+</div>

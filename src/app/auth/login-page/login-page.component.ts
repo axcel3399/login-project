@@ -24,7 +24,7 @@ export class LoginPageComponent implements OnInit {
       remember: [false] // чекбокс Remember me
     });
 
-    // Очистка формы при инициализации
+
     this.loginForm.reset();
   }
 

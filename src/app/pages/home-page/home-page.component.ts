@@ -15,6 +15,7 @@ export class HomePageComponent {
 
   constructor(private router: Router) {
     const user = localStorage.getItem('user') || sessionStorage.getItem('user');
+
     if (user) {
       this.userLogin = JSON.parse(user).login;
     } else {
@@ -24,6 +25,7 @@ export class HomePageComponent {
 
   confirmLogout(): void {
     const confirmExit = window.confirm('Вы уверены, что хотите выйти?');
+
     if (confirmExit) {
       localStorage.removeItem('user');
       sessionStorage.removeItem('user');

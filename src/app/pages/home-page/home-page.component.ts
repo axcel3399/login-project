@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -9,27 +9,34 @@ import { CommonModule } from '@angular/common';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit {
+
+  private router = inject(Router);
 
   userLogin: string = '';
 
-  constructor(private router: Router) {
-    const user = localStorage.getItem('user') || sessionStorage.getItem('user');
+  ngOnInit() {
 
-    if (user) {
-      this.userLogin = JSON.parse(user).login;
-    } else {
+    const user = localStorage.getItem('user');
+
+    if (!user) {
       this.router.navigate(['/login']);
+      return;
     }
+
+    this.userLogin = JSON.parse(user).login;
+
   }
 
-  confirmLogout(): void {
+  confirmLogout() {
+
     const confirmExit = window.confirm('Вы уверены, что хотите выйти?');
 
     if (confirmExit) {
       localStorage.removeItem('user');
-      sessionStorage.removeItem('user');
       this.router.navigate(['/login']);
     }
+
   }
+
 }

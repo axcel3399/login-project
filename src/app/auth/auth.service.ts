@@ -1,18 +1,37 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
-  private readonly storageKey = 'user';
 
   login(login: string, password: string) {
-    localStorage.setItem(this.storageKey, JSON.stringify({ login, password }));
+
+    const user = {
+      login,
+      password
+    };
+
+    localStorage.setItem('user', JSON.stringify(user));
+
   }
 
   logout() {
-    localStorage.removeItem(this.storageKey);
+    localStorage.removeItem('user');
   }
 
-  isLoggedIn(): boolean {
-    return !!localStorage.getItem(this.storageKey);
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('user');
   }
+
+  getUserLogin(): string {
+
+    const user = localStorage.getItem('user');
+
+    if (!user) return '';
+
+    return JSON.parse(user).login;
+
+  }
+
 }

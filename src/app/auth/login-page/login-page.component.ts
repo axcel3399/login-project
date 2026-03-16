@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -11,12 +11,14 @@ import { CommonModule } from '@angular/common';
 })
 export class LoginPageComponent implements OnInit {
 
+  private fb = inject(FormBuilder);
+  private router = inject(Router);
+
   loginForm!: FormGroup;
   errorMessage = '';
 
-  constructor(private fb: FormBuilder, private router: Router) {}
-
   ngOnInit(): void {
+
     this.loginForm = this.fb.group({
       login: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(4)]],
@@ -27,24 +29,20 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmit(): void {
+
     if (this.loginForm.invalid) {
       this.errorMessage = 'Пожалуйста, заполните все поля и убедитесь, что пароль ≥ 4 символов';
       return;
     }
 
-    const { login, password, remember } = this.loginForm.value;
+    const { login, password } = this.loginForm.value;
 
     const userData = { login, password };
 
-    if (remember) {
-      localStorage.setItem('user', JSON.stringify(userData));
-      sessionStorage.removeItem('user');
-    } else {
-      sessionStorage.setItem('user', JSON.stringify(userData));
-      localStorage.removeItem('user');
-    }
+    localStorage.setItem('user', JSON.stringify(userData));
 
     this.loginForm.reset();
+
     this.router.navigate(['/home']);
   }
 }
